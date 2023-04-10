@@ -100,7 +100,7 @@ module peripherals
   );
 
   localparam APB_ADDR_WIDTH  = 32;
-  localparam APB_NUM_SLAVES  = 8;
+  localparam APB_NUM_SLAVES  = 9;
 
   APB_BUS s_apb_bus();
 
@@ -113,6 +113,7 @@ module peripherals
   APB_BUS s_fll_bus();
   APB_BUS s_soc_ctrl_bus();
   APB_BUS s_debug_bus();
+  APB_BUS s_kuznechik_bus();
 
   logic [1:0]   s_spim_event;
   logic [3:0]   timer_irq;
@@ -227,7 +228,8 @@ module peripherals
      .i2c_master        ( s_i2c_bus        ),
      .fll_master        ( s_fll_bus        ),
      .soc_ctrl_master   ( s_soc_ctrl_bus   ),
-     .debug_master      ( s_debug_bus      )
+     .debug_master      ( s_debug_bus      ),
+     .kuznechik_master  ( s_kuznechik_bus  )
   );
 
   //////////////////////////////////////////////////////////////////
@@ -546,4 +548,20 @@ module peripherals
     .per_master_r_opc_i   ( '0                      ),
     .per_master_r_rdata_i ( debug.rdata             )
   );
+  
+  kuznechik_cipher_apb_wrapper
+  kuznechik_cipher_apb_wrapper
+  (
+    .clk_i( clk_int[8] ),
+    .rstn_i( rstn ),
+    .apb_paddr_i( s_kuznechik_bus.paddr ),
+    .apb_pwdata_i( s_kuznechik_bus.pwdata ),
+    .apb_pwrite_i( s_kuznechik_bus.pwrite      ),
+    .apb_psel_i( s_kuznechik_bus.psel        ),
+    .apb_penable_i( s_kuznechik_bus.penable     ),
+    .apb_prdata_o( s_kuznechik_bus.prdata      ),
+    .apb_pready_o( s_kuznechik_bus.pready      ),
+    .apb_pslverr_o( s_kuznechik_bus.pslverr     )
+  );
+
 endmodule
