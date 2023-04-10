@@ -33,13 +33,13 @@
 #define KUZNECHIK_DATA_OUT_2                 REG( KUZNECHIK_REG_DATA_OUT_2   )
 #define KUZNECHIK_DATA_OUT_3                 REG( KUZNECHIK_REG_DATA_OUT_3   )
 
-inline void      kuznechik_set( uintptr_t reg_addr, unsigned int data ){
-  REG(reg_addr) = data;
-}
+// inline void      kuznechik_set( uintptr_t reg_addr, unsigned int data ){
+//   REG(reg_addr) = data;
+// }
 
-inline uintptr_t kuznechik_get( uintptr_t reg_addr ){
-  return REG(reg_addr);
-}
+// inline uintptr_t kuznechik_get( uintptr_t reg_addr ){
+//   return REG(reg_addr);
+// }
 
 inline void      kuznechik_cipher      ( unsigned int data_in [4] ){
   unsigned int busy = 1;
