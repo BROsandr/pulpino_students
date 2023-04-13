@@ -342,5 +342,7 @@ module kuznechik_cipher_apb_wrapper
       .data_o     ( cipher2regs_data_out )
   );
 
+`include "includes/kuznechik_cipher_apb_wrapper_sva.svh"
+
 
 endmodule
