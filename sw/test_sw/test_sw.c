@@ -26,12 +26,13 @@ int main()
 
   while(1) {
     // char mode = get_gpio_pin_value(1);
-    char me2kuznechik[16];
-    for( int i = 0; i < 16; ++i ) {
-      me2kuznechik[i] = uart_getchar();
-    }
+    unsigned int me2kuznechik[4];
+    me2kuznechik[0] = 0x3ee5c99f;
+    me2kuznechik[1] = 0x9a41c389;
+    me2kuznechik[2] = 0xac17b4fe;
+    me2kuznechik[3] = 0x99c72ae4;
 
-    kuznechik_cipher( (unsigned int *)me2kuznechik );
+    kuznechik_cipher( me2kuznechik );
     char kuznechik2me[16];
     kuznechik_get_ciphered( (unsigned int *)kuznechik2me );
     uart_send( kuznechik2me, 16 );
