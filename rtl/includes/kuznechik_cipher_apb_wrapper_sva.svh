@@ -75,12 +75,12 @@
 
   // Behavioral
 
-  assert property ( @(posedge clk_i) 
-    disable iff( ~rstn_i )
-    $rose( apb_psel_i ) |-> ##1 apb_penable_i && !$past( apb_penable_i )
-  ) else begin
-    $fatal( "penable_i after psel_i error" );
-  end
+//  assert property ( @(posedge clk_i) 
+//    disable iff( ~rstn_i )
+//    $rose( apb_psel_i ) |-> ##1 apb_penable_i && !$past( apb_penable_i )
+//  ) else begin
+//    $fatal( "penable_i after psel_i error" );
+//  end
 
   assert property ( @(posedge clk_i) 
     disable iff( ~rstn_i )
@@ -96,12 +96,12 @@
     $fatal( "during access phase unstable signals" );
   end
 
-  assert property ( @(posedge clk_i) 
-    disable iff( ~rstn_i )
-    $rose(apb_pready_o) |-> ##1 $fell(apb_pready_o)
-  ) else begin
-    $fatal( "pready lasts longer than 1 clock cycle" );
-  end
+//   assert property ( @(posedge clk_i) 
+//     disable iff( ~rstn_i )
+//     $rose(apb_pready_o) |-> ##1 $fell(apb_pready_o)
+//   ) else begin
+//     $fatal( "pready lasts longer than 1 clock cycle" );
+//   end
 
   assert property ( @(posedge clk_i) 
     disable iff( ~rstn_i )

@@ -45,4 +45,6 @@ void      kuznechik_cipher      ( unsigned int data_in [4] );
 
 void      kuznechik_get_ciphered( unsigned int data_out[4] );
 
+void      kuznechik_init();
+
 #endif // _KUZNECHIK_H_

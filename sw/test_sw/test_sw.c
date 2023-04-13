@@ -12,6 +12,7 @@
 int main()
 {
   uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
+  kuznechik_init();
 
   // uart_send("Hello world!\n", 13); // 13 is a number of chars sent: 12 + "\n" 
   // uart_wait_tx_done();
@@ -27,7 +28,6 @@ int main()
   set_pin_function(31, FUNC_GPIO);
   set_gpio_pin_direction(31, DIR_OUT);
 
-  set_gpio_pin_value(31, 1);
 
   while(1) {
     // char mode = get_gpio_pin_value(1);
@@ -40,6 +40,14 @@ int main()
     kuznechik_cipher( me2kuznechik );
     char kuznechik2me[16];
     kuznechik_get_ciphered( (unsigned int *)kuznechik2me );
-    uart_send( kuznechik2me, 16 );
+    // char *reg_addr = 0x00008200;
+    // for( int i = 0; i < 16; ++i ) {
+    //   *reg_addr = kuznechik2me[i];
+    // }
+    char buff[17];
+    memcpy( buff, kuznechik2me, 16 );
+    buff[16] = '\0';
+    set_gpio_pin_value(31, 1);
+    uart_send( buff, 17 );
   }
 }
