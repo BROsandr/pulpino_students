@@ -13,8 +13,8 @@ int main()
 {
   uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
 
-  uart_send("Hello world!\n", 13); // 13 is a number of chars sent: 12 + "\n" 
-  uart_wait_tx_done();
+  // uart_send("Hello world!\n", 13); // 13 is a number of chars sent: 12 + "\n" 
+  // uart_wait_tx_done();
 
   // set_pin_function(16, FUNC_GPIO);
   // set_gpio_pin_direction(16, DIR_OUT);
@@ -23,6 +23,11 @@ int main()
 
   // set_pin_function(1, FUNC_GPIO);
   // set_gpio_pin_direction(1, DIR_IN);
+
+  set_pin_function(31, FUNC_GPIO);
+  set_gpio_pin_direction(31, DIR_OUT);
+
+  set_gpio_pin_value(31, 1);
 
   while(1) {
     // char mode = get_gpio_pin_value(1);
