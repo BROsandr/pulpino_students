@@ -553,7 +553,7 @@ module peripherals
   kuznechik_cipher_apb_wrapper
   (
     .clk_i( clk_int[8] ),
-    .rstn_i( rstn ),
+    .rstn_i( rst_n ),
     .apb_paddr_i( s_kuznechik_bus.paddr ),
     .apb_pwdata_i( s_kuznechik_bus.pwdata ),
     .apb_pwrite_i( s_kuznechik_bus.pwrite      ),
