@@ -12,11 +12,10 @@ void cipher_and_print( unsigned int data[4] ) {
   kuznechik_cipher( data );
   char kuznechik2me[16];
   kuznechik_get_ciphered( (unsigned int *)kuznechik2me );
-  char buff[17];
+  char buff[16];
   for( int i = 0; i < 16; ++i ) {
     buff[15-i] = kuznechik2me[i];
   }
-  buff[16] = '\0';
   uart_send( buff, 16 );
 }
 
