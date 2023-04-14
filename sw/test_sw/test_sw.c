@@ -47,4 +47,58 @@ int main()
   me2kuznechik[1] = 0xb970bb42;
   me2kuznechik[0] = 0xa5631ccd;
   cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x63a148b3
+  me2kuznechik[2] = 0xd9774ced
+  me2kuznechik[1] = 0xe1c54673
+  me2kuznechik[0] = 0xc68dcd03;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x2ed02c74
+  me2kuznechik[2] = 0x160391fd
+  me2kuznechik[1] = 0x9e8bd4ba
+  me2kuznechik[0] = 0x21e79a9d;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x74f24530
+  me2kuznechik[2] = 0x59092269
+  me2kuznechik[1] = 0x22ac9d24
+  me2kuznechik[0] = 0xb9ed3b20;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x03dde21c
+  me2kuznechik[2] = 0x095413db
+  me2kuznechik[1] = 0x093bb863
+  me2kuznechik[0] = 0x6d8fc082;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0xbdeb379c
+  me2kuznechik[2] = 0x9326a275
+  me2kuznechik[1] = 0xc58c7568
+  me2kuznechik[0] = 0x85c40d47;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x2dcabdf6
+  me2kuznechik[2] = 0xb6488f5f
+  me2kuznechik[1] = 0x3d56c2fd
+  me2kuznechik[0] = 0x3d2357b0;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x887adf8b
+  me2kuznechik[2] = 0x545c4334
+  me2kuznechik[1] = 0xe0070c63
+  me2kuznechik[0] = 0xd2f344a3;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x23feeb91
+  me2kuznechik[2] = 0x15fab3e4
+  me2kuznechik[1] = 0xf9739578
+  me2kuznechik[0] = 0x010f212c;
+  cipher_and_print( me2kuznechik );
+
+  me2kuznechik[3] = 0x53e0ebee
+  me2kuznechik[2] = 0x97b0c1b8
+  me2kuznechik[1] = 0x377ac5bc
+  me2kuznechik[0] = 0xe14cb4e8;
+  cipher_and_print( me2kuznechik );
 }
