@@ -33,3 +33,8 @@ void      kuznechik_get_ciphered( unsigned int data_out[4] ){
 void      kuznechik_init() {
   KUZNECHIK_RST = 1;
 }
+
+void      kuznechik_reset() { 
+  KUZNECHIK_RST = 0;
+  KUZNECHIK_RST = 1;
+}

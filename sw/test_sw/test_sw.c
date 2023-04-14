@@ -8,7 +8,8 @@
 #include <pulpino.h>
 #include <kuznechik.h>
 
-#define RESET_SW 0
+#define DEMO_SW 0
+#define RESET_SW 1
 
 void cipher_and_print( unsigned int data[4] ) {
   kuznechik_cipher( data );
@@ -123,7 +124,29 @@ void reset_leds() {
 }
 
 char is_demo_cipher() {
+  return get_gpio_pin_value(DEMO_SW);
+}
+
+char is_reset() {
   return get_gpio_pin_value(RESET_SW);
+}
+
+void cipher() {
+  char me2kuznechik[16];
+  char reseted = 0;
+
+  uart_clear();
+
+  for( int i = 0; i < 16; ++i ) {
+    if( is_reset() ) {
+      reseted = 1;
+      kuznechik_reset();
+      break;
+    }
+    set_gpio_pin_value(16+i, 1);
+    me2kuznechik[i] = uart_getchar();
+  }
+  if( !reseted ) cipher_and_print( ( unsigned int* )me2kuznechik );
 }
 
 int main()
@@ -137,8 +160,10 @@ int main()
   while( 1 ) {
     if( is_demo_cipher() ) {
       demo_cipher();
-      reset_leds();
+    } else {
+      cipher();
     }
+    reset_leds();
   }
 
 }

@@ -72,3 +72,12 @@ void uart_wait_tx_done(void) {
   while( (*(volatile unsigned int*)(UART_REG_LSR) & 0x40) == 0);
 }
 
+char uart_is_empty() {
+  return !(*((volatile int*)UART_REG_LSR) & 0x1);
+}
+
+void uart_clear() {
+  while( !uart_is_empty() ) {
+    uart_getchar();
+  }
+}

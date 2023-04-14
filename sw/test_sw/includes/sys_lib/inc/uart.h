@@ -72,4 +72,8 @@ char uart_getchar();
 
 void uart_wait_tx_done(void);
 
+char uart_is_empty();
+
+void uart_clear();
+
 #endif
