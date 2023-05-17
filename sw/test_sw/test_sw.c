@@ -161,10 +161,10 @@ int main()
     if( is_reset() ) { 
       kuznechik_reset();
     } else {
-    if( is_demo_cipher() ) {
-      demo_cipher();
-    } else {
-      cipher();
+      if( is_demo_cipher() ) {
+        demo_cipher();
+      } else {
+        cipher();
       }
     }
     reset_leds();
