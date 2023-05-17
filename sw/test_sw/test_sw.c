@@ -6,7 +6,7 @@
 #include <uart.h>
 //#include <utils.h>
 #include <pulpino.h>
-#include <kuznechik.h>
+#include <vga.h>
 
 #define DEMO_SW 0
 #define RESET_SW 1
@@ -123,51 +123,14 @@ void reset_leds() {
   }
 }
 
-char is_demo_cipher() {
-  return get_gpio_pin_value(DEMO_SW);
-}
-
-char is_reset() {
-  return get_gpio_pin_value(RESET_SW);
-}
-
-void cipher() {
-  char me2kuznechik[16];
-  char reseted = 0;
-
-  uart_clear();
-
-  for( int i = 0; i < 16; ++i ) {
-    if( is_reset() ) {
-      reseted = 1;
-      kuznechik_reset();
-      break;
-    }
-    set_gpio_pin_value(16+i, 1);
-    me2kuznechik[i] = uart_getchar();
-  }
-  if( !reseted ) cipher_and_print( ( unsigned int* )me2kuznechik );
-}
-
 int main()
 {
-  uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
-  kuznechik_init();
-
   init_leds();
   init_switches();
 
-  while( 1 ) {
-    if( is_reset() ) { 
-      kuznechik_reset();
-    } else {
-      if( is_demo_cipher() ) {
-        demo_cipher();
-      } else {
-        cipher();
-      }
-    }
-    reset_leds();
-  }
+  set_gpio_pin_value(16, 1 );
 
+  vga_draw_rect(0, 0, 100, 100);
+
+  return 0;
 }
