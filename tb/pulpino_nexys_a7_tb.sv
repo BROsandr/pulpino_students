@@ -7,6 +7,9 @@ module pulpino_nexys_a7_tb ();
   tri   [7:0]  ja;
   logic        uart_rxd_out;
   logic        uart_txd_in;
+  
+  logic [11:0] rgb;
+  logic        vga_vs, vga_hs;
 
 
   // Clock generation
@@ -52,7 +55,11 @@ module pulpino_nexys_a7_tb ();
     .led          (led),
     .ja           (ja),
     .uart_rxd_out (uart_rxd_out),
-    .uart_txd_in  (uart_txd_in)
+    .uart_txd_in  (uart_txd_in),
+    
+    .vga_vs_o     (vga_vs ),
+    .vga_hs_o     (vga_hs ),
+    .rgb_o          (rgb )
   );
 
 

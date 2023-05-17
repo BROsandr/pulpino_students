@@ -132,5 +132,7 @@ int main()
 
   vga_draw_rect(0, 0, 100, 100);
 
+  while( 1 );
+
   return 0;
 }

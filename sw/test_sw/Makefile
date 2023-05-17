@@ -34,6 +34,7 @@ OBJS = test_sw.o\
 	./includes/sys_lib/src/timer.o\
 	./includes/sys_lib/src/exceptions.o\
 	./includes/sys_lib/src/kuznechik.o\
+	./includes/sys_lib/src/vga.o\
 	
 
 EMB_OBJS =  ./includes/ref/crt0.riscv.o
