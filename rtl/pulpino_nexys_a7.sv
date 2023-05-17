@@ -11,7 +11,11 @@ module pulpino_nexys_a7
   inout  logic [7:0]  ja,
 
   output logic        uart_rxd_out,
-  input  logic        uart_txd_in
+  input  logic        uart_txd_in,
+    
+  output logic              vga_vs_o,
+  output logic              vga_hs_o,
+  output logic [11:0]       rgb_o
 );
 
   // Clock and reset +
@@ -242,7 +246,11 @@ pulpino_top
 
     // PULPino specific pad config
     .pad_cfg_o (),
-    .pad_mux_o ()
+    .pad_mux_o (),
+    
+    .vga_vs_o( vga_vs_o ),
+    .vga_hs_o( vga_hs_o ),
+    .rgb_o   ( rgb_o    )
   );
 
 

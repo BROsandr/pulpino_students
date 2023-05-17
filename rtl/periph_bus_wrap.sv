@@ -30,7 +30,8 @@ module periph_bus_wrap
     APB_BUS.Master    fll_master,
     APB_BUS.Master    soc_ctrl_master,
     APB_BUS.Master    debug_master,
-    APB_BUS.Master    kuznechik_master
+    APB_BUS.Master    kuznechik_master,
+    APB_BUS.Master    vga_master
 
     );
 

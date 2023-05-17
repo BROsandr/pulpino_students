@@ -96,7 +96,11 @@ module peripherals
 
     output logic [31:0] [5:0] pad_cfg_o,
     output logic       [31:0] pad_mux_o,
-    output logic       [31:0] boot_addr_o
+    output logic       [31:0] boot_addr_o,
+    
+    output logic              vga_vs_o,
+    output logic              vga_hs_o,
+    output logic [11:0]       rgb_o
   );
 
   localparam APB_ADDR_WIDTH  = 32;
@@ -230,7 +234,8 @@ module peripherals
      .fll_master        ( s_fll_bus        ),
      .soc_ctrl_master   ( s_soc_ctrl_bus   ),
      .debug_master      ( s_debug_bus      ),
-     .kuznechik_master  ( s_kuznechik_bus  )
+     .kuznechik_master  ( s_kuznechik_bus  ),
+     .vga_master        ( s_vga_bus        )
   );
 
   //////////////////////////////////////////////////////////////////
@@ -577,7 +582,11 @@ module peripherals
     .apb_penable_i( s_vga_bus.penable     ),
     .apb_prdata_o( s_vga_bus.prdata      ),
     .apb_pready_o( s_vga_bus.pready      ),
-    .apb_pslverr_o( s_vga_bus.pslverr     )
+    .apb_pslverr_o( s_vga_bus.pslverr     ),
+    
+    .vga_hs_o( vga_hs_o ),
+    .vga_vs_o( vga_vs_o ),
+    .rgb_o( rgb_o )
   );
 
 endmodule
