@@ -95,6 +95,9 @@ module periph_bus_wrap
   assign s_start_addr[9] = `KUZNICHIK_START_ADDR;
   assign s_end_addr[9]   = `KUZNICHIK_END_ADDR;
 
+  `APB_ASSIGN_MASTER(s_masters[10], vga_master);
+  assign s_start_addr[10] = `VGA_START_ADDR;
+  assign s_end_addr[10]   = `VGA_END_ADDR;
 
   //********************************************************
   //**************** SOC BUS *******************************

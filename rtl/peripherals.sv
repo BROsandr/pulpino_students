@@ -100,7 +100,7 @@ module peripherals
   );
 
   localparam APB_ADDR_WIDTH  = 32;
-  localparam APB_NUM_SLAVES  = 9;
+  localparam APB_NUM_SLAVES  = 10;
 
   APB_BUS s_apb_bus();
 
@@ -114,6 +114,7 @@ module peripherals
   APB_BUS s_soc_ctrl_bus();
   APB_BUS s_debug_bus();
   APB_BUS s_kuznechik_bus();
+  APB_BUS s_vga_bus();
 
   logic [1:0]   s_spim_event;
   logic [3:0]   timer_irq;
@@ -562,6 +563,21 @@ module peripherals
     .apb_prdata_o( s_kuznechik_bus.prdata      ),
     .apb_pready_o( s_kuznechik_bus.pready      ),
     .apb_pslverr_o( s_kuznechik_bus.pslverr     )
+  );
+
+  vga_apb_wrapper
+  vga_apb_wrapper
+  (
+    .clk_i( clk_int[9] ),
+    .rstn_i( rst_n ),
+    .apb_paddr_i( s_vga_bus.paddr ),
+    .apb_pwdata_i( s_vga_bus.pwdata ),
+    .apb_pwrite_i( s_vga_bus.pwrite      ),
+    .apb_psel_i( s_vga_bus.psel        ),
+    .apb_penable_i( s_vga_bus.penable     ),
+    .apb_prdata_o( s_vga_bus.prdata      ),
+    .apb_pready_o( s_vga_bus.pready      ),
+    .apb_pslverr_o( s_vga_bus.pslverr     )
   );
 
 endmodule
