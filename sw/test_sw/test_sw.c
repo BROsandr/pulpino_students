@@ -35,22 +35,16 @@ void reset_leds() {
 int main()
 {
   uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
-  init_leds();
-  init_switches();
 
-  set_gpio_pin_value(16, 1 );
-
-  vga_draw_rect(0, 0, 100, 100);
-
+  uart_send("Hello world!\n", 13); // 13 is a number of chars sent: 12 + "\n" 
   uart_wait_tx_done();
-  uart_send( "he", 2 );
 
-  while( 1 ){
-    char pos[4];
-    sprintf( pos, "%d", MOUSE_X_POS );
-    uart_wait_tx_done();
-    uart_send(pos, 4);
-  }
+  set_pin_function(31, FUNC_GPIO);
+  set_gpio_pin_direction(31, DIR_OUT);
+
+  set_gpio_pin_value(31, 0);
+
+  while(1);
 
   return 0;
 }
