@@ -25,10 +25,13 @@ module mouse_pos_wrapper #(
   logic [2:0] btnm_next;
 
   logic       m_done_tick;
+  
+  logic       rst;
+  assign      rst = ~rstn_i;
 
   mouse mouse(  
     .clk( clk_i ), 
-    .reset( rstn_i ),  
+    .reset( rst ),  
     .ps2d( ps2d_io ), 
     .ps2c( ps2c_io ),  
     .xm( xm ), 

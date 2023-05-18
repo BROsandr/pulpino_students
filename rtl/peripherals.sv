@@ -239,7 +239,8 @@ module peripherals
      .soc_ctrl_master   ( s_soc_ctrl_bus   ),
      .debug_master      ( s_debug_bus      ),
      .kuznechik_master  ( s_kuznechik_bus  ),
-     .vga_master        ( s_vga_bus        )
+     .vga_master        ( s_vga_bus        ),
+     .mouse_master      ( s_mouse_bus      )
   );
 
   //////////////////////////////////////////////////////////////////
