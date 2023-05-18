@@ -156,18 +156,6 @@ module mouse_apb_wrapper
   else if (y_pos_en)
     y_pos_ff <= y_pos_next;
 
-  // X pos
-
-  assign x_pos_en = apb_write & apb_sel_x_pos;
-
-  assign x_pos_next = apb_pwdata_i;
-
-  always_ff @(posedge clk_i or negedge rstn_i)
-  if (~rstn_i)
-    x_pos_ff <= '0;
-  else if (x_pos_en)
-    x_pos_ff <= x_pos_next;
-
   //////////////////////////
   // BUTTON register    //
   //////////////////////////
