@@ -1,5 +1,7 @@
 module vga_mem_wrapper(
-  input clk_i, arstn_i,
+  input clk100mhz_i,
+  input clk50mhz_i,
+  input arstn_i,
   
   output VGA_HS_o, VGA_VS_o,
   input  color_i,
@@ -39,7 +41,7 @@ module vga_mem_wrapper(
     .HD( HD ),
     .VD( VD )
   ) vga(
-    .clk( clk_i ), .arstn( arstn_i ),
+    .clk( clk100mhz_i ), .arstn( arstn_i ),
     
     .SW( color_ff ),
     
@@ -56,22 +58,22 @@ module vga_mem_wrapper(
   
   logic video_buffer_pixel_ff;
   
-  always_ff @( posedge clk_i ) 
+  always_ff @( posedge clk50mhz_i ) 
     if( we_i )  video_buffer_ff[addr_x_i * HD + addr_y_i] <= color_i;
   
   logic [VSYNC_BITS-1:0] vcount_buff;
   logic [HSYNC_BITS-1:0] hcount_buff ;
     
-  always_ff @( posedge clk_i ) begin
+  always_ff @( posedge clk100mhz_i ) begin
     vcount_buff <= vcount - (VR+VB);
     hcount_buff <= hcount - (HR+HB);
   end
     
-  always_ff @( posedge clk_i )
+  always_ff @( posedge clk100mhz_i )
     video_buffer_pixel_ff <= video_buffer_ff[( vcount_buff ) * HD + ( hcount_buff )];
 //    video_buffer_pixel_ff <= video_buffer_ff[( vcount ) * HD + ( hcount )];
   
-  always_ff @( posedge clk_i )
+  always_ff @( posedge clk100mhz_i )
     color_ff <= { 12{video_buffer_pixel_ff} };
 
 endmodule

@@ -87,7 +87,7 @@ module vga_apb_wrapper
   assign ctrl_we_next = (apb_write & apb_sel_we) ? apb_pwdata_i[0]
                        :                             '0;
 
-  always_ff @(posedge clk100mhz or negedge rstn_i)
+  always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)
     ctrl_we_ff <= '0;
   else if (ctrl_we_en)
@@ -101,7 +101,7 @@ module vga_apb_wrapper
 
   assign addr_x_next = apb_pwdata_i[10:0];
 
-  always_ff @(posedge clk100mhz or negedge rstn_i)
+  always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)
     addr_x_ff <= '0;
   else if (addr_x_en)
@@ -111,7 +111,7 @@ module vga_apb_wrapper
 
   assign addr_y_next = apb_pwdata_i[10:0];
 
-  always_ff @(posedge clk100mhz or negedge rstn_i)
+  always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)
     addr_y_ff <= '0;
   else if (addr_y_en)
@@ -125,7 +125,7 @@ module vga_apb_wrapper
 
   assign color_next = apb_pwdata_i[0];
 
-  always_ff @(posedge clk100mhz or negedge rstn_i)
+  always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)
     color_ff <= '0;
   else if (color_en)
@@ -140,7 +140,7 @@ module vga_apb_wrapper
   assign apb_ready_en = (apb_psel_i & apb_penable_i)
                       | apb_ready_ff;
 
-  always_ff @(posedge clk100mhz or negedge rstn_i)
+  always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)
     apb_ready_ff <= '0;
   else if (apb_ready_en)
@@ -162,7 +162,8 @@ module vga_apb_wrapper
 
   // Instantiation
   vga_mem_wrapper vga_mem_wrapper(
-    .clk_i( clk100mhz ), 
+    .clk100mhz_i( clk100mhz ), 
+    .clk50mhz_i( clk_i ),
     .arstn_i( rstn_i ),
     
     .VGA_HS_o( vga_hs_o ), 
