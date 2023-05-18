@@ -15,7 +15,10 @@ module pulpino_nexys_a7
     
   output logic              vga_vs_o,
   output logic              vga_hs_o,
-  output logic [11:0]       rgb_o
+  output logic [11:0]       rgb_o,
+
+  inout  logic              ps2d_io,
+  inout  logic              ps2c_io
 );
 
   // Clock and reset +
@@ -250,7 +253,9 @@ pulpino_top
     
     .vga_vs_o( vga_vs_o ),
     .vga_hs_o( vga_hs_o ),
-    .rgb_o   ( rgb_o    )
+    .rgb_o   ( rgb_o    ),
+    .ps2d_io( ps2d_io ),
+    .ps2c_io( ps2c_io )
   );
 
 

@@ -31,7 +31,8 @@ module periph_bus_wrap
     APB_BUS.Master    soc_ctrl_master,
     APB_BUS.Master    debug_master,
     APB_BUS.Master    kuznechik_master,
-    APB_BUS.Master    vga_master
+    APB_BUS.Master    vga_master,
+    APB_BUS.Master    mouse_master
 
     );
 
@@ -99,6 +100,10 @@ module periph_bus_wrap
   `APB_ASSIGN_MASTER(s_masters[10], vga_master);
   assign s_start_addr[10] = `VGA_START_ADDR;
   assign s_end_addr[10]   = `VGA_END_ADDR;
+
+  `APB_ASSIGN_MASTER(s_masters[11], mouse_master);
+  assign s_start_addr[11] = `MOUSE_START_ADDR;
+  assign s_end_addr[11]   = `MOUSE_END_ADDR;
 
   //********************************************************
   //**************** SOC BUS *******************************

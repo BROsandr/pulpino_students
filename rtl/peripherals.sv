@@ -100,11 +100,14 @@ module peripherals
     
     output logic              vga_vs_o,
     output logic              vga_hs_o,
-    output logic [11:0]       rgb_o
+    output logic [11:0]       rgb_o,
+
+    inout  logic              ps2d_io,
+    inout  logic              ps2c_io
   );
 
   localparam APB_ADDR_WIDTH  = 32;
-  localparam APB_NUM_SLAVES  = 10;
+  localparam APB_NUM_SLAVES  = 11;
 
   APB_BUS s_apb_bus();
 
@@ -119,6 +122,7 @@ module peripherals
   APB_BUS s_debug_bus();
   APB_BUS s_kuznechik_bus();
   APB_BUS s_vga_bus();
+  APB_BUS s_mouse_bus();
 
   logic [1:0]   s_spim_event;
   logic [3:0]   timer_irq;
@@ -587,6 +591,24 @@ module peripherals
     .vga_hs_o( vga_hs_o ),
     .vga_vs_o( vga_vs_o ),
     .rgb_o( rgb_o )
+  );
+
+  mouse_apb_wrapper
+  mouse_apb_wrapper
+  (
+    .clk_i( clk_int[10] ),
+    .rstn_i( rst_n ),
+    .apb_paddr_i( s_mouse_bus.paddr ),
+    .apb_pwdata_i( s_mouse_bus.pwdata ),
+    .apb_pwrite_i( s_mouse_bus.pwrite      ),
+    .apb_psel_i( s_mouse_bus.psel        ),
+    .apb_penable_i( s_mouse_bus.penable     ),
+    .apb_prdata_o( s_mouse_bus.prdata      ),
+    .apb_pready_o( s_mouse_bus.pready      ),
+    .apb_pslverr_o( s_mouse_bus.pslverr     ),
+    
+    .ps2d_io( ps2d_io ),
+    .ps2c_io( ps2c_io )
   );
 
 endmodule
