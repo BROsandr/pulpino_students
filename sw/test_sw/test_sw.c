@@ -38,6 +38,8 @@ int main()
   init_leds();
   init_switches();
 
+  mouse_init();
+
   set_gpio_pin_value(16, 1 );
 
   vga_draw_rect(0, 0, 100, 100);

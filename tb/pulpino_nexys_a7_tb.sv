@@ -42,6 +42,8 @@ module pulpino_nexys_a7_tb ();
   assign ja[4] = 1'b1;
   assign ja[0] = 1'b0;
   assign ja[1] = 1'b0;
+  
+  wire ps2d_io, ps2c_io;
 
 
   pulpino_nexys_a7
@@ -59,7 +61,9 @@ module pulpino_nexys_a7_tb ();
     
     .vga_vs_o     (vga_vs ),
     .vga_hs_o     (vga_hs ),
-    .rgb_o          (rgb )
+    .rgb_o          (rgb ),
+    .ps2c_io      ( ps2c_io ),
+    .ps2d_io      ( ps2d_io )
   );
 
 

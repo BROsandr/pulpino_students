@@ -12,8 +12,8 @@ module mouse_pos_wrapper #(
   output logic [Y_POS_WIDTH:0] y_pos_o,
   output logic [2:0]           btnm_o,
 
-  inout logic ps2d_io,
-  inout logic ps2c_io
+  inout wire  ps2d_io,
+  inout wire  ps2c_io
 );
 
   logic [X_POS_WIDTH:0] x_pos_ff;

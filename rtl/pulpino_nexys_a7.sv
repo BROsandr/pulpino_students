@@ -17,8 +17,8 @@ module pulpino_nexys_a7
   output logic              vga_hs_o,
   output logic [11:0]       rgb_o,
 
-  inout  logic              ps2d_io,
-  inout  logic              ps2c_io
+  inout  wire              ps2d_io,
+  inout  wire              ps2c_io
 );
 
   // Clock and reset +

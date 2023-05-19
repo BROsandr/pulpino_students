@@ -15,8 +15,8 @@ module mouse_apb_wrapper
   output logic                      apb_pready_o,
   output logic                      apb_pslverr_o,
 
-  inout  logic                      ps2d_io,
-  inout  logic                      ps2c_io
+  inout  wire                      ps2d_io,
+  inout  wire                      ps2c_io
 );
 
   localparam WIDTH       = 1280;
@@ -255,7 +255,7 @@ module mouse_apb_wrapper
     .Y_POS_WIDTH( Y_POS_WIDTH )
   ) mouse_pos_wrapper (
     .clk_i( clk_i ),
-    .rstn_i( regs2mouse_ack ),
+    .rstn_i( mouse_rstn ),
     .ack_i( regs2mouse_ack ),
     
     .x_pos_o( mouse2regs_x_pos ),
