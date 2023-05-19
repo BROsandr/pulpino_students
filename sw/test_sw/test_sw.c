@@ -42,16 +42,17 @@ int main()
 
   set_gpio_pin_value(16, 1 );
 
-  vga_draw_rect(0, 0, 100, 100);
+  // vga_draw_rect(0, 0, 100, 100);
 
-  uart_wait_tx_done();
-  uart_send( "he", 2 );
+  // uart_wait_tx_done();
+  // uart_send( "he", 2 );
 
   while( 1 ){
-    char pos[4];
-    sprintf( pos, "%d", MOUSE_X_POS );
+    vga_set_pixel( MOUSE_X_POS, MOUSE_Y_POS, 1);
+    // char pos[5];
+    // sprintf( pos, "3" );
     uart_wait_tx_done();
-    uart_send(pos, 4);
+    uart_send(MOUSE_X_POS, 4);
   }
 
   return 0;

@@ -53,8 +53,8 @@ module mouse_pos_wrapper #(
       y_pos_ff <= y_pos_next;
     end 
 
-  assign x_pos_next = x_pos_ff + { { (X_POS_WIDTH-9){xm[8]} }, xm };
-  assign y_pos_next = y_pos_ff + { { (Y_POS_WIDTH-9){ym[8]} }, ym };
+  assign y_pos_next = y_pos_ff + { { (X_POS_WIDTH-9){xm[8]} }, xm };
+  assign x_pos_next = x_pos_ff - { { (Y_POS_WIDTH-9){ym[8]} }, ym };
 
   always_ff @( posedge clk_i or negedge rstn_i )
     if( ~rstn_i )  btnm_ff <= '0;
