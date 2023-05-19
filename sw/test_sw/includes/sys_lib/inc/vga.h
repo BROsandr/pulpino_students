@@ -18,6 +18,13 @@
 #define VGA_WIDTH                      1280
 #define VGA_HEIGHT                     1024
 
+typedef enum  {
+  VGA_BLACK,
+  VGA_WHITE,
+  VGA_BLUE,
+  VGA_GREEN
+}vga_color;
+
 void      vga_set_pixel      ( unsigned int addr_x, unsigned int addr_y, unsigned int color );
 
 void      vga_clear          ( );

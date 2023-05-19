@@ -47,9 +47,9 @@ module vga_apb_wrapper
   logic                      addr_y_en;
   logic    [10:0]            addr_y_next;
 
-  logic                      color_ff;
+  logic    [1:0]             color_ff;
   logic                      color_en;
-  logic                      color_next;
+  logic    [1:0]             color_next;
 
   logic                      apb_ready_ff;
   logic                      apb_ready_next;
@@ -123,7 +123,7 @@ module vga_apb_wrapper
 
   assign color_en = apb_write & apb_sel_color;
 
-  assign color_next = apb_pwdata_i[0];
+  assign color_next = apb_pwdata_i[1:0];
 
   always_ff @(posedge clk_i or negedge rstn_i)
   if (~rstn_i)

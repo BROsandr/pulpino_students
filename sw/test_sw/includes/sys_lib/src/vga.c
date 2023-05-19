@@ -10,7 +10,7 @@ void      vga_set_pixel      ( unsigned int addr_x, unsigned int addr_y, unsigne
 void      vga_draw_rect      ( unsigned int x, unsigned int y, unsigned int width, unsigned int height ){
   for( int i = x; i < x + width; ++i ) {
     for( int j = y; j < y + height; ++j ) {
-      vga_set_pixel(i, j, 1);
+      vga_set_pixel(i, j, VGA_WHITE);
     }
   }
 }
@@ -18,7 +18,7 @@ void      vga_draw_rect      ( unsigned int x, unsigned int y, unsigned int widt
 void      vga_clear      ( ){
   for( int i = 0; i < VGA_HEIGHT; ++i ) {
     for( int j = 0; j < VGA_WIDTH; ++j ) {
-      vga_set_pixel(i, j, 0);
+      vga_set_pixel(i, j, VGA_BLACK);
     }
   }
 }

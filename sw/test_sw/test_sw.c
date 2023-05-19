@@ -54,11 +54,12 @@ int main()
   // uart_send( "he", 2 );
 
   while( 1 ){
-    vga_set_pixel( MOUSE_X_POS, MOUSE_Y_POS, 1);
+    vga_color color = get_gpio_pin_value(0) | ( get_gpio_pin_value(1) << 1 );
+    vga_set_pixel( MOUSE_X_POS, MOUSE_Y_POS, color);
     // char pos[5];
     // sprintf( pos, "3" );
-    uart_wait_tx_done();
-    uart_send(MOUSE_X_POS, 4);
+    // uart_wait_tx_done();
+    // uart_send(MOUSE_X_POS, 4);
   }
 
   return 0;
