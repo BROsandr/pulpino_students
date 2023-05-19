@@ -16,8 +16,8 @@ void      vga_draw_rect      ( unsigned int x, unsigned int y, unsigned int widt
 }
 
 void      vga_clear      ( ){
-  for( int i = 0; i < VGA_WIDTH; ++i ) {
-    for( int j = 0; j < VGA_HEIGHT; ++j ) {
+  for( int i = 0; i < VGA_HEIGHT; ++i ) {
+    for( int j = 0; j < VGA_WIDTH; ++j ) {
       vga_set_pixel(i, j, 0);
     }
   }
