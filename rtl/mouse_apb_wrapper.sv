@@ -19,6 +19,11 @@ module mouse_apb_wrapper
   inout  logic                      ps2c_io
 );
 
+  localparam WIDTH       = 1280;
+  localparam HEIGHT      = 1080;
+  localparam X_POS_WIDTH = $clog2(HEIGHT);
+  localparam Y_POS_WIDTH = $clog2(WIDTH);
+
   // Local declarations
 
   localparam ADDR_X_POS     = 12'h0;
@@ -44,9 +49,9 @@ module mouse_apb_wrapper
   logic                      regs2mouse_ack;
 
   // From mouse to APB regs
-  logic                      mouse2regs_button;
-  logic                      mouse2regs_x_pos;
-  logic                      mouse2regs_y_pos;
+  logic [2:0]                mouse2regs_button;
+  logic [X_POS_WIDTH:0]      mouse2regs_x_pos;
+  logic [Y_POS_WIDTH:0]      mouse2regs_y_pos;
 
   logic                      ctrl_rst_ff;
   logic                      ctrl_rst_en;
@@ -243,10 +248,19 @@ module mouse_apb_wrapper
   assign regs2mouse_ack = ctrl_ack_ff;
 
   // Instantiation
-  mouse_pos_wrapper mouse_pos_wrapper(
+  mouse_pos_wrapper #(
+    .WIDTH( WIDTH ),
+    .HEIGHT( HEIGHT ),
+    .X_POS_WIDTH( X_POS_WIDTH ),
+    .Y_POS_WIDTH( Y_POS_WIDTH )
+  ) mouse_pos_wrapper (
     .clk_i( clk_i ),
     .rstn_i( regs2mouse_ack ),
     .ack_i( regs2mouse_ack ),
+    
+    .x_pos_o( mouse2regs_x_pos ),
+    .y_pos_o( mouse2regs_y_pos ),
+    .btnm_o ( mouse2regs_button),
 
     .ps2d_io( ps2d_io ),
     .ps2c_io( ps2c_io )

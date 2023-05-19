@@ -1,16 +1,20 @@
 module mouse_pos_wrapper #(
-  parameter WIDTH = 1280,
-  parameter HEIGHT = 1080
+  parameter WIDTH,
+  parameter HEIGHT,
+  parameter X_POS_WIDTH,
+  parameter Y_POS_WIDTH
 ) (
   input logic clk_i,
   input logic rstn_i,
   input logic ack_i,
+  
+  output logic [X_POS_WIDTH:0] x_pos_o,
+  output logic [Y_POS_WIDTH:0] y_pos_o,
+  output logic [2:0]           btnm_o,
 
   inout logic ps2d_io,
   inout logic ps2c_io
 );
-  localparam X_POS_WIDTH = $clog2(HEIGHT);
-  localparam Y_POS_WIDTH = $clog2(WIDTH);
 
   logic [X_POS_WIDTH:0] x_pos_ff;
   logic [Y_POS_WIDTH:0] y_pos_ff;
@@ -58,5 +62,8 @@ module mouse_pos_wrapper #(
     
   assign btnm_next = ack_i ? '0 : btnm_ff | btnm;
 
+  assign btnm_o  = btnm_ff;
+  assign x_pos_o = x_pos_ff;
+  assign y_pos_o = y_pos_ff;
 
 endmodule
