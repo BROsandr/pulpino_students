@@ -32,13 +32,19 @@ void reset_leds() {
   }
 }
 
-int main()
-{
+void init() {
   uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
+
   init_leds();
   init_switches();
 
   mouse_init();
+  vga_init();
+}
+
+int main()
+{
+  init();
 
   set_gpio_pin_value(16, 1 );
 

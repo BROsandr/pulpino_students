@@ -15,7 +15,14 @@
 #define VGA_COLOR                      REG( VGA_REG_COLOR        )
 #define VGA_WE                         REG( VGA_REG_WE           )
 
+#define VGA_WIDTH                      1280
+#define VGA_HEIGHT                     1024
+
 void      vga_set_pixel      ( unsigned int addr_x, unsigned int addr_y, unsigned int color );
+
+void      vga_clear          ( );
+
+void      vga_init           ( );
 
 void      vga_draw_rect      ( unsigned int x, unsigned int y, unsigned int width, unsigned int height );
 
