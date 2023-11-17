@@ -67,3 +67,6 @@
 [submodule "submodules/fpu"]
 	path = submodules/fpu
 	url = https://github.com/pulp-platform/fpu.git
+[submodule "submodules/apb/vgachargen"]
+	path = submodules/apb/vgachargen
+	url = https://github.com/BROsandr/vgachargen.git
