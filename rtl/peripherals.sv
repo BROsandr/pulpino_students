@@ -558,7 +558,7 @@ module peripherals
   apb_vgachargen apb_vgachargen (
     .clk_i         (clk_int[8]),
     .rstn_i        (rst_n),
-    .apb_paddr_i   (s_vga_bus.padddr[11:0]),
+    .apb_paddr_i   (s_vga_bus.paddr[11:0]),
     .apb_pwdata_i  (s_vga_bus.pwdata),
     .apb_pwrite_i  (s_vga_bus.pwrite),
     .apb_psel_i    (s_vga_bus.psel),
