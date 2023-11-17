@@ -94,7 +94,13 @@ module pulpino_top
 
     // PULPino specific pad config
     output logic [31:0] [5:0] pad_cfg_o,
-    output logic       [31:0] pad_mux_o
+    output logic       [31:0] pad_mux_o,
+
+    output logic [3:0]        R_o,
+    output logic [3:0]        G_o,
+    output logic [3:0]        B_o,
+    output logic              hSYNC_o,
+    output logic              vSYNC_o
   );
 
   logic        clk_int;
@@ -289,7 +295,12 @@ module pulpino_top
     .fll1_lock_i     ( lock_fll_int      ),
     .pad_cfg_o       ( pad_cfg_o         ),
     .pad_mux_o       ( pad_mux_o         ),
-    .boot_addr_o     ( boot_addr_int     )
+    .boot_addr_o     ( boot_addr_int     ),
+    .R_o,
+    .G_o,
+    .B_o,
+    .hSYNC_o,
+    .vSYNC_o
   );
 
 
@@ -320,4 +331,3 @@ module pulpino_top
   );
 
 endmodule
-

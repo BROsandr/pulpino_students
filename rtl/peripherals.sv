@@ -96,7 +96,13 @@ module peripherals
 
     output logic [31:0] [5:0] pad_cfg_o,
     output logic       [31:0] pad_mux_o,
-    output logic       [31:0] boot_addr_o
+    output logic       [31:0] boot_addr_o,
+
+    output logic [3:0]        R_o,
+    output logic [3:0]        G_o,
+    output logic [3:0]        B_o,
+    output logic              hSYNC_o,
+    output logic              vSYNC_o
   );
 
   localparam APB_ADDR_WIDTH  = 32;
@@ -113,6 +119,7 @@ module peripherals
   APB_BUS s_fll_bus();
   APB_BUS s_soc_ctrl_bus();
   APB_BUS s_debug_bus();
+  APB_BUS s_vga_bus();
 
   logic [1:0]   s_spim_event;
   logic [3:0]   timer_irq;
@@ -227,7 +234,8 @@ module peripherals
      .i2c_master        ( s_i2c_bus        ),
      .fll_master        ( s_fll_bus        ),
      .soc_ctrl_master   ( s_soc_ctrl_bus   ),
-     .debug_master      ( s_debug_bus      )
+     .debug_master      ( s_debug_bus      ),
+     .vga_master        ( s_vga_bus      )
   );
 
   //////////////////////////////////////////////////////////////////
@@ -545,5 +553,23 @@ module peripherals
     .per_master_r_valid_i ( debug.rvalid            ),
     .per_master_r_opc_i   ( '0                      ),
     .per_master_r_rdata_i ( debug.rdata             )
+  );
+
+  apb_vgachargen apb_vgachargen (
+    .clk_i         (clk_int[8]),
+    .rstn_i        (rst_n),
+    .apb_paddr_i   (s_vga_bus.padddr[11:0]),
+    .apb_pwdata_i  (s_vga_bus.pwdata),
+    .apb_pwrite_i  (s_vga_bus.pwrite),
+    .apb_psel_i    (s_vga_bus.psel),
+    .apb_penable_i (s_vga_bus.penable),
+    .apb_prdata_o  (s_vga_bus.prdata),
+    .apb_pready_o  (s_vga_bus.pready),
+    .apb_pslverr_o (s_vga_bus.pslverr),
+    .R_o,
+    .G_o,
+    .B_o,
+    .hSYNC_o,
+    .vSYNC_o
   );
 endmodule
