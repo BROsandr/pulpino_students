@@ -38,7 +38,7 @@
 #define I2C_BASE_ADDR                 ( SOC_PERIPHERALS_BASE_ADDR + 0x5000 )
 #define FLL_BASE_ADDR                 ( SOC_PERIPHERALS_BASE_ADDR + 0x6000 )
 #define SOC_CTRL_BASE_ADDR            ( SOC_PERIPHERALS_BASE_ADDR + 0x7000 )
-#define VGA_BASE_ADDR                 ( SOC_PERIPHERALS_BASE_ADDR + 0x20000 )
+#define VGA_BASE_ADDR                 ( SOC_PERIPHERALS_BASE_ADDR + 0x8000 )
 
 /** STDOUT */
 #define STDOUT_BASE_ADDR              ( SOC_PERIPHERALS_BASE_ADDR + 0x10000 )
