@@ -54,7 +54,7 @@
 `define DEBUG_END_ADDR        32'h1A11_7FFF
 
 `define VGA_START_ADDR        32'h1A10_8000
-`define VGA_END_ADDR          32'h1A10_9FFF
+`define VGA_END_ADDR          32'h1A10_AFFF
 
 `define APB_ASSIGN_SLAVE(lhs, rhs)     \
     assign lhs.paddr    = rhs.paddr;   \
