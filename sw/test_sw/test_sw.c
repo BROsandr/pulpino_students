@@ -27,6 +27,34 @@ int main()
       ++vga_buff;
     }
   }
+  set_gpio_pin_value(16, 1);
+
+  // check written chars and colors
+  vga_buff = (uint32_t*)VGA_BASE_ADDR;
+  char fail = 0;
+  for (int i = 0; i < 30; ++i) {
+    for (int j = 0; j < 80; ++j) {
+      uint32_t el = *vga_buff;
+      if (i == 29 && j == 79) {
+        if ((((el >> 8) & 0xff) != 0xfa) || (el & 0xff) != 0x31) {
+          set_gpio_pin_value(30, 1);
+          fail = 1;
+          goto end;
+        }
+      } else {
+        if ((((el >> 8) & 0xff) != 0xab) || (el & 0xff) != 0x30) {
+          set_gpio_pin_value(29, 1);
+          fail = 1;
+          goto end;
+        }
+      }
+      ++vga_buff;
+    }
+  }
+
+end:
+  if (!fail) set_gpio_pin_value(28, 1);
+
 
   while(1) {
     asm volatile ("nop");
