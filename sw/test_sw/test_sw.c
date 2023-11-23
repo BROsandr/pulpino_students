@@ -56,21 +56,23 @@ end:
   if (!fail) set_gpio_pin_value(28, 1);
 
 
-  // uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
+  uart_set_cfg(0, 325); // 9600 baud UART, no parity (50MHz CPU)
 
-  vga_buff = (uint32_t*)VGA_BASE_ADDR;
 
   while(1) {
-    char ch;
-    // ch = uart_getchar();
+    vga_buff = (uint32_t*)VGA_BASE_ADDR;
     // uart_sendchar(ch);
-    set_gpio_pin_value(27, 1);
-    *vga_buff = (0xfa << 8) | ((uint8_t)vga_buff);
-    ++vga_buff;
-
-    if (vga_buff > (((uint32_t*)VGA_BASE_ADDR) + 29 * 79)) {
-      set_gpio_pin_value(26, 1);
-      vga_buff = (uint32_t*)VGA_BASE_ADDR;
+    for (int i = 0; i < 30; ++i) {
+      for (int j = 0; j < 80; ++j) {
+        char ch;
+        char color;
+        ch = uart_getchar();
+        color = uart_getchar();
+        set_gpio_pin_value(27, 1);
+        *vga_buff = (color << 8) | ch;
+        ++vga_buff;
+      }
     }
+    set_gpio_pin_value(26, 1);
   }
 }
